@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Produk</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #FFFBF2; font-family: sans-serif; }
+        .sidebar { background-color: #AF7E54; min-height: 100vh; color: white; padding: 30px; }
+        .main-content { padding: 40px; }
+        .card-custom { background-color: white; border-radius: 15px; padding: 30px; border: none; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar d-none d-md-block">
+            <h3 class="text-center mb-4">Pawfect</h3>
+            <nav class="nav flex-column">
+                <a class="nav-link" href="/" style="color: white;">Home</a>
+                <a class="nav-link" href="/users" style="color: white;">Data Users</a>
+                <a class="nav-link" href="/products" style="color: white;">Data Products</a>
+            </nav>
+        </div>
+        <div class="col-md-10 main-content">
+            <h2 style="color: #AF7E54; font-weight: bold;">Tambah Produk Baru</h2>
+            <div class="card card-custom mt-4">
+                <form action="/products" method="POST" enctype="multipart/form-data">
+                    
+                    <div class="form-group">
+                        <label>Nama Produk</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gambar Produk</label>
+                        <input type="file" name="image" class="form-control-file" required>
+                        <small class="text-muted">Format: jpg, jpeg, png (Max 2MB)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <textarea name="description" class="form-control"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label>Harga (Rp)</label>
+                            <input type="number" name="price" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Stok</label>
+                            <input type="number" name="stock" class="form-control" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Simpan Produk</button>
+                    <a href="/products" class="btn btn-secondary">Batal</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

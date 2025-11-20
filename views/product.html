@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Pengguna</title>
-    <title>Data Users - Pawfect Style</title>
+    <title>Data Products - Pawfect Style</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background-color: #FFFBF2; font-family: sans-serif; overflow-x: hidden; }
@@ -12,7 +11,6 @@
         .brand-logo { font-size: 24px; font-weight: bold; margin-bottom: 40px; display: block; text-align: center; }
         .nav-link { color: #f1f1f1; font-size: 16px; margin-bottom: 10px; padding: 10px 15px; border-radius: 8px; }
         .nav-link:hover { background-color: rgba(255, 255, 255, 0.2); color: white; text-decoration: none; }
-        .nav-link.active { background-color: rgba(255, 255, 255, 0.2); font-weight: bold; }
         .main-content { padding: 40px; }
         h1 { color: #AF7E54; font-weight: bold; margin-bottom: 10px; }
         .card-custom { background-color: white; border: none; border-radius: 15px; box-shadow: 0 2px 15px rgba(0,0,0,0.05); padding: 20px; }
@@ -21,56 +19,60 @@
     </style>
 </head>
 <body>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-2 sidebar d-none d-md-block">
             <div class="brand-logo">Pawfect</div>
             <nav class="nav flex-column">
                 <a class="nav-link" href="/">Home</a>
-                <a class="nav-link active" href="/users">Data Users</a>
-                 <a class="nav-link" href="/products">Data Products</a>
+                <a class="nav-link" href="/users">Data Users</a>
+                <a class="nav-link active" href="/products">Data Products</a>
             </nav>
         </div>
 
         <div class="col-md-10 main-content">
-            <h1>Daftar Users</h1>
-            <p class="text-muted mb-4">List semua pengguna yang terdaftar di sistem.</p>
-
-            <div class="card card-custom">
+            <h1>Daftar Produk</h1>
+            <a href="/products/create" class="btn btn-success mb-3 shadow-sm">+ Tambah Produk</a>
+            
+           <div class="card card-custom">
                 <table class="table table-hover mt-2">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nama Lengkap</th>
-                            <th>Email</th>
-                            <th>Action</th>
+                            <th style="width: 15%;">Gambar</th> <th>Nama Produk</th>
+                            <th>Harga</th>
+                            <th>Stok</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% users.forEach(user => { %>
+                        <% products.forEach(product => { %>
                         <tr>
-                            <td><span class="font-weight-bold text-muted">#<%= user.id %></span></td>
-                            <td style="font-weight: 600; color: #AF7E54;"><%= user.name %></td>
-                            <td><%= user.email %></td>
+                            <td><span class="font-weight-bold text-muted">#<%= product.id %></span></td>
                             <td>
-                        <a href="/users/<%= user.id %>" class="btn btn-info btn-sm">Detail</a>
-                        <a href="/users/<%= user.id %>/edit" class="btn btn-warning btn-sm">Edit</a>
-                        <form action="/users/<%= user.id %>?_method=DELETE" method="POST" style="display:inline;">
-                            <button type="submit" class="btn btn-danger btn-sm">Hapus</button>
-                        </form>
-                    </td>
+                                <img src="http://127.0.0.1:8000/storage/image/<%= product.image %>" 
+                                     alt="<%= product.title %>" 
+                                     class="img-thumbnail shadow-sm" 
+                                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 10px;">
+                            </td>
+                            <td style="font-weight: 600; color: #AF7E54; vertical-align: middle;"><%= product.title %></td>
+                            <td style="vertical-align: middle;">Rp <%= product.price %></td>
+                            <td style="vertical-align: middle;"><%= product.stock %></td>
+                            <td style="vertical-align: middle;">
+                                <a href="/products/<%= product.id %>" class="btn btn-info btn-sm">Detail</a>
+                                <a href="/products/<%= product.id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="/products/<%= product.id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin hapus?')">Hapus</button>
+                                </form>
+                            </td>
                         </tr>
                         <% }) %>
                     </tbody>
                 </table>
-                <div class="text-center mt-3">
-             <a href="/" class="btn btn-secondary">Kembali ke Halaman Utama</a>
-        </div>
+            </div>
             </div>
         </div>
     </div>
 </div>
-
 </body>
 </html>

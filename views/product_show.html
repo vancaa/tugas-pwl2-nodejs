@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Produk</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #FFFBF2; font-family: sans-serif; }
+        .sidebar { background-color: #AF7E54; min-height: 100vh; color: white; padding: 30px; }
+        .main-content { padding: 40px; }
+        .card-custom { background-color: white; border-radius: 15px; padding: 30px; border: none; box-shadow: 0 2px 15px rgba(0,0,0,0.05); }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2 sidebar d-none d-md-block">
+            <h3 class="text-center mb-4">Pawfect</h3>
+        </div>
+        <div class="col-md-10 main-content">
+            <h2 style="color: #AF7E54; font-weight: bold;">Detail Produk</h2>
+            <div class="card card-custom mt-4">
+                <h3><%= product.name %></h3>
+                <hr>
+                <p><strong>Deskripsi:</strong> <%= product.description %></p>
+                <p><strong>Harga:</strong> Rp <%= product.price %></p>
+                <p><strong>Stok:</strong> <%= product.stock %> unit</p>
+                <div class="mt-4">
+                    <a href="/products" class="btn btn-secondary">Kembali</a>
+                    <a href="/products/<%= product.id %>/edit" class="btn btn-warning">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
